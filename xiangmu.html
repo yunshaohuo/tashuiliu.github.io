@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>程序哈</title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
+    <style>
+        /* Custom Styles */
+        body, html {
+            margin: 0px;
+            padding: 0px;
+            background-color: #f6f6f6;
+
+        }
+        .gu{
+            position: fixed;
+            right: 10px;
+            top: 80%;
+            width: 3rem;
+            z-index: 1000;
+            background: whitesmoke;
+            box-shadow: 1px 1px 10px #dddddd;
+            font-size: 2rem;
+        }
+        .gu img{
+            position: absolute;
+            right: 44px;
+            bottom: 0px;
+
+        }
+        .ding,.ma{
+            text-align: center;
+            border-bottom:#dddddd 1px solid;
+            height: 40px;
+            line-height: 40px;
+        }
+        h2 {
+            color: #08c;
+        }
+
+        h1 {
+            padding: 0px;
+            margin: 0px;
+        }
+
+        strong {
+            color: #0088cc;
+            font-size: 20px;
+        }
+
+        ul.nav-tabs {
+            width: 140px;
+            margin-top: 20px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.067);
+        }
+
+        .jumbotron {
+            margin-bottom: 30px;
+        }
+
+        .zuFooter {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+        }
+
+        .zuFooter img {
+            margin-right: 10px;
+        }
+
+        .zuFooter strong {
+            margin-left: 10px;
+        }
+
+        ul.nav-tabs li {
+            margin: 0;
+            border-top: 1px solid #ddd;
+        }
+
+        ul.nav-tabs li:first-child {
+            border-top: none;
+        }
+
+        ul.nav-tabs li a {
+            margin: 0;
+            padding: 8px 16px;
+            border-radius: 0;
+        }
+
+        ul.nav-tabs li.active a, ul.nav-tabs li.active a:hover {
+            color: #fff;
+            background: #0088cc;
+            border: 1px solid #0088cc;
+        }
+
+        ul.nav-tabs li:first-child a {
+            border-radius: 4px 4px 0 0;
+        }
+
+        ul.nav-tabs li:last-child a {
+            border-radius: 0 0 4px 4px;
+        }
+
+        ul.nav-tabs.affix {
+            top: 60px; /* Set the top position of pinned element */
+        }
+
+        .btn-info:hover {
+            color: #fff;
+            background-color: #0088cc;
+            border-color: #0088cc;
+        }
+
+        .vue:focus, .vue:hover {
+            text-decoration: underline;
+            background-color: #42b983;
+            border-color: #42b983;
+        }
+
+        #vue:focus, #vue:hover {
+            color: #42b983;
+        }
+        .element{
+
+        }
+    </style>
+</head>
+<body data-spy="scroll" data-target="#myScrollspy">
+<div class="container">
+    <qrcode_i></qrcode_i>
+    <div class="jumbotron">
+        <h2>前端框架、后端技术学习--</h2>
+        <div class="zuFooter">
+            <img src="images/hashiqi.png" alt="未加载" width="12%" height="120px">
+            <span>{{start}}</span>
+            <strong>{{pHandler}}</strong>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-3" id="myScrollspy">
+            <ul class="nav nav-tabs nav-stacked" data-spy="affix" data-offset="280">
+                <li class=""><a href="/index">回到首页</a></li>
+                <li class="active"><a href="#section-1">bootstrap</a></li>
+                <li><a href="#section-2">vue</a></li>
+                <li><a href="#section-3">react</a></li>
+                <li><a href="#section-4">node</a></li>
+                <li><a href="#section-5">element</a></li>
+            </ul>
+
+        </div>
+        <div class="col-xs-9">
+            <h2 id="section-1"><a href="https://v4.bootcss.com/">Bootstrap</a></h2>
+            <p>使用世界上最流行的前端组件库在Web上构建响应式，移动优先的项目。</p>
+            <h3>bootstrap特点</h3>
+            <p>
+                Bootstrap是一个用于使用HTML，CSS和JS开发的开源工具包。使用我们的Sass变量和mixins，响应式网格系统，大量的预构建组件以及基于jQuery构建的强大插件，可以快速创建您的想法的原型，或构建您的整个应用程序。</p>
+            <h3>npm 安装</h3>
+            <p>通过npm，Composer或Meteor包含Bootstrap的源Sass和JavaScript文件。程序包管理的安装不包括文档，但包括我们的构建系统和自述文件。</p>
+
+            <code>npm install bootstrap</code>
+            <code>gem install bootstrap -v 4.3.1</code>
+            <h3>引导cdn</h3>
+            <p>当您只需要包含Bootstrap的已编译CSS或JS时，可以使用BootstrapCDN。</p>
+            <p><a href="https://v4.bootcss.com/docs/4.3/getting-started/download/#bootstrapcdn">Bootstrap CDN</a></p>
+            <h3>主题</h3>
+            <p>通过正式的高级主题将Bootstrap 4提升到一个新的水平-基于Bootstrap构建的工具包，其中包含新的组件和插件，文档以及构建工具。</p>
+            <a href="https://themes.getbootstrap.com/" class="btn btn-info" role="button">链接主题</a>
+            <h2 id="section-2"><a href="https://cn.vuejs.org/index.html" id="vue">Vue</a></h2>
+
+            <h4>渐进式</h4>
+            <h4>JavaScript 框架</h4>
+            <h3>Vue特点</h3>
+            <p>已经会了 HTML、CSS、JavaScript？即刻阅读指南开始构建应用！不断繁荣的生态系统，可以在一个库和一套完整框架之间自如伸缩。
+                <mark>20kB min+gzip</mark>
+                运行大小 超快虚拟 DOM 最省心的优化。
+            </p>
+            <h3>npm 安装</h3>
+            <p>在用 Vue 构建大型应用时推荐使用 NPM 安装[1]。NPM 能很好地和诸如 webpack 或 Browserify 模块打包器配合使用。同时 Vue 也提供配套工具来开发单文件组件。</p>
+            <code># 最新稳定版</code>
+            <code>$ npm install vue</code>
+            <h3>Vue CDN</h3>
+            <a href="https://cn.vuejs.org/v2/guide/installation.html#CDN" class="btn btn-info vue" role="button">Vue CDN
+                DOC</a>
+            <hr>
+            <h2 id="section-3"><a href="https://zh-hans.reactjs.org/">React</a></h2>
+            <h4>用于构建用户界面的 JavaScript 库</h4>
+            <h3>React特点</h3>
+
+            <p>声明式 React 使创建交互式 UI 变得轻而易举。React 还可以使用 Node 进行服务器渲染，或使用 React Native 开发原生移动应用。</p>
+            <h3>npm 安装</h3>
+            <code>$ npm install -g cnpm --registry=https://registry.npm.taobao.org</code>
+            <br>
+            <code>$ npm config set registry https://registry.npm.taobao.org</code>
+            <br>
+            <code>$ cnpm install [name]</code>
+            <h3>React CDN</h3>
+            <a href="https://zh-hans.reactjs.org/docs/cdn-links.html" class="btn btn-info" role="button">React CDN
+                DOC</a>
+            <hr>
+            <h2 id="section-4"><a href="https://nodejs.org/zh-cn/">Node.js</a></h2>
+            <h4>Node.js® 是一个基于 Chrome V8 引擎 的 JavaScript 运行时。</h4>
+            <h3>node 安装</h3>
+            <p>当前长期支持版: 12.13.1 <b>(包含 npm 6.12.1)</b></p>
+            <a href="https://nodejs.org/dist/v12.13.1/node-v12.13.1-x86.msi" class="btn btn-info" role="button">下载node.js
+                windows32位-msi</a>
+            <a href="https://nodejs.org/dist/v12.13.1/node-v12.13.1-x64.msi" class="btn btn-info" role="button">下载node.js
+                windows64位-zip</a>
+            <h3>node 学习</h3>
+            <h3><a href="https://nodejs.org/zh-cn/docs/">点击走上学习node的道路</a></h3>
+            <hr>
+            <h4>node npm</h4>
+            <p>设置node文件的环境变量。</p>
+            <img src="images/node_环境.png" alt="node">
+            <p>打开cmd命令窗口。</p>
+            <img src="images/node_-v.png" alt="node">
+            <h4>npm 使用介绍</h4>
+            <p>npm 同node一同安装，打开cmd命令窗口。</p>
+            <img src="images/node-npm.png" alt="node-npm">
+            <p>npm 命令安装模块</p>
+            <code>$ npm install <span><span><</span>Module Name</span>></code>
+            <hr>
+            <p>查看安装模块的信息</p>
+            <code>$npm list -g 全局安装的模块信息</code>
+            <code>$npm list <span><span><</span>Module Name</span>> 指定模块的版本号</code>
+            <hr>
+            <p>卸载模块</p>
+            <code>$ npm uninstall <span><span><</span>Module Name</span>></code>
+            <hr>
+            <p>查看包在node_modules目录下是否存在</p>
+            <code>$ npm ls</code>
+            <hr>
+            <p>更新模块</p>
+            <code>$ npm update express</code>
+            <hr>
+            <p>搜索模块</p>
+            <code>$ npm search express</code>
+            <p>创建模块</p>
+            <code>$ npm init</code>
+            <p>在 npm 资源库中注册用户</p>
+            <code>$ npm adduser</code>
+            <p>发布模块</p>
+            <code>$ npm publish</code>
+            <hr>
+            <div class="element">
+                <h2 id="section-5"><a href="https://element.eleme.io/#/zh-CN">Element</a></h2>
+                <p>Element，一套为开发者、设计师和产品经理准备的基于 Vue 2.0 的桌面端组件库</p>
+                <h3>Element特点</h3>
+                <p>
+                    与现实生活的流程，逻辑保持一致，并遵循用户习惯的语言和概念；所有的元素和结构需保持一致;通过界面样式和交互动效让用户可以清晰的感知自己的操作;操作后，通过页面元素的变化清晰地展现当前状态。设计简洁直观的操作流程；语言表达清晰且表意明确，让用户快速理解细长做出决定；界面简单直白，让用户快速识别而非回忆，减少用户记忆负担。用户可以自由的进行操作，包括取消，回退和终止当前操作等。</p>
+                <h3>npm 安装</h3>
+                <code>npm i element-ui -S</code>
+                <h3>Element CDN</h3>
+                <a href="https://element.eleme.io/#/zh-CN/component/installation#cdn" class="btn btn-info" role="button">Element
+                    CDN Doc</a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script>
+    Vue.component('qrcode_i', {
+        data() {
+            return {
+                image_is: false
+            }
+        },
+        methods: {
+            qrCode() {
+                this.image_is = !this.image_is
+            }
+        },
+        template: `
+    <div class="gu">
+        <div class="ding"><a href="#"><i class="fa fa-arrow-up"></i></a></div>
+        <div class="ma"><a href="javascript:void(0)" @click.stop="qrCode"><i class="fa fa-qrcode" aria-hidden="true"></i></a></div>
+        <img src="images/qrcode.png" alt="二维码" v-if="image_is">
+    </div>`
+    })
+    new Vue({
+        el: '.container',
+        data: {
+            pHandler: '做一只快乐的程序哈，开心快乐的学习！'
+        },
+        computed: {
+            start() {
+                setInterval(() => {
+                    var beforeNumber = this.pHandler.substring(0, 1)
+                    var afterNumber = this.pHandler.substring(1)
+                    this.pHandler = afterNumber + beforeNumber
+                    return this.pHandler
+                }, 300)
+
+            }
+        }
+    })
+</script>
+</html>
