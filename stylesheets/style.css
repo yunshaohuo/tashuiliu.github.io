@@ -1,9 +1,11 @@
 body {
-    padding: 3px;
+    padding: 0px;
     margin: 0;
-    background-color: #f6f6f6;
+    height: 1500px;
+
 
 }
+
 /*模板中样式*/
 .content span{
     color: #28a76c;
@@ -36,8 +38,9 @@ a:hover {
     color: #f8f9fa;
 }
 
+
 .main_content {
-    margin-top: 30px;
+    margin-top: 40px;
 }
 /*宽度整个屏幕*/
 .container-fluid {
@@ -80,30 +83,57 @@ blockquote {
 }
 
 .copyright {
-    margin-top: 200px;
-}
 
+}
+.wenBen{
+}
 .wenBen p {
     font-size: 20px;
     text-align: center;
+    width: 260px;
     color: #28a76c;
     font-weight: bold;
     line-height: 30px;
+    margin: 0px auto;
 }
+.ni{
+    position: absolute;
+    color: #28a76c;
+    font-size: 1.5rem;
+    font-style: oblique;
+    text-shadow: 1px 1px 6px #59ce7d;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%);
+}
+.niclass{
+    height: 298.5px;
+}
+.comment{
 
-.wenBen span:after {
+    position: relative;
+}
+.wenBen span:before {
     content: "✎";
     position: absolute;
     font-size: 15px;
     left: -28px;
-    bottom: 0px;
+
     z-index: 1;
 
 }
+.wenBen span:after{
+    content: "";
+    display: block;
+    clear: both;
+}
 
 .wenBen span {
-    text-shadow: 0px 0px 10px #dddddd;
+    text-shadow: 0px 4px 6px #28a76c;
     position: relative;
+
+
+
 }
 
 .wenBen a {
@@ -111,7 +141,7 @@ blockquote {
 }
 
 .wenBen {
-    margin-top: 0px;
+    margin-top: 20px;
 }
 .wenBen p span{
     cursor:pointer;
@@ -129,7 +159,9 @@ blockquote {
     font-size: 1rem;
 }
 .area_text {
-    margin-top: 60px;
+    margin-top: 10px;
+
+    background: #f6f6f6;
 }
 
 .bg-light {
@@ -152,9 +184,13 @@ blockquote {
 .heart_ha {
     color:#28a76c;
 }
-
-.container {
-    background-color: white;
+.heart_o,.heart_ha{
+    position: relative;
+}
+.navbar_li{
+    background: #11998e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #38ef7d, #11998e);
 }
 .navbar-nav{
     padding: 0px;
@@ -219,4 +255,61 @@ blockquote {
     border-color: #28a76c transparent transparent transparent;
     border-width: 5px;
     border-style: solid;
+}
+
+.fa-heart span{
+    position: absolute;
+    right:4px;
+
+}
+.fa-heart,.fa-trash{
+    box-shadow: 0px 1px 4px #28a745;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 5px;
+    padding: 0px 5px 0px 5px;
+}
+
+
+.p_gp>hr{
+    background: #28a745;
+
+}
+.p_gp{
+    margin: 20px 0px;
+}
+/*右侧栏*/
+.aside_right{
+    background: #11998e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    writing-mode: vertical-lr;
+    letter-spacing: 80px;
+    font-size: 20px;
+    border-radius: 10px;
+    margin: 0px auto;
+
+}
+
+.content{
+    background: #f6f6f6;
+}
+.p_row{
+    color: white;
+    cursor: pointer;
+    margin: 20px 20px;
+    
+    text-shadow: 0px 0px 20px #ffffff;
+
+
+}
+.all{
+    position: relative;
+
+}
+label>input{
+    margin-top: 4px;
 }
