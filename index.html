@@ -7,13 +7,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
-
     <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
     <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
-    <link rel="stylesheet" href="./stylesheets/style.css">
+    <link rel="stylesheet" href="stylesheets/style.css">
     <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <script src="javascripts/localstorage.js"></script>
 </head>
 <body>
 
@@ -38,7 +38,7 @@
                 <input type="button" class="btn btn-success col-sm-2 offset-sm-1" value="Search" @click="search">
             </form>
         </nav>
-        <nav class="navbar navbar-expand-sm bg-success navbar-dark text-light">
+        <nav class="navbar_li navbar-expand-sm navbar-dark text-light">
             <!-- Links -->
             <ul class="navbar-nav">
                 <li class="nav-item">
@@ -101,65 +101,87 @@
             </ul>
         </div>
         <!--        h1 要获取-->
+
         <div class="content col-sm-8">
+            <transition name="vue"
+                        enter-active-class="animated fadeIn"
+                        leave-active-class="animated fadeOut">
             <router-view>
             </router-view>
+            </transition>
         </div>
+
         <!--侧边栏-->
-        <div class="aside_right col-sm-2">
+        <div class="aside_right col-sm-1">
+            <p class="p_row">快来打广告</p>
         </div>
         <div class="area_text container col-sm-8">
+            <div class="comment">
+                <!--进入评论-->
+                <div class="wenBen">
+                    <p><span v-on:click.stop="holder">点击,进入评论</span></p>
+                    <div class="alert alert-success text-center" v-if="p_xian">
+                        <strong>警告!</strong> {{niHao}}
+                    </div>
+                </div>
+                <!--            评论界面-->
+                <transition name="vue"
+                            enter-active-class="animated fadeIn"
+                            leave-active-class="animated fadeOut">
+                            <div class="niclass"  v-if="!change_text">
+                                <p class="ni">在此！言出学问，才是学问。</p>
+                            </div>
+                    <div v-else class="comment_h">
+                        <form action="" class="form-group row">
+                            <div class="name col-sm-3">
+                                <label for="name">
+                                    用户名：
+                                    <input type="text" ref="id" id="name" class="form-control" v-model="text" placeholder="输入用户名" autocomplete="off">
+                                </label>
+                                
+                            </div>
+                            <div class="email col-sm-4">
+                                <label for="email">
+                                    邮件：
+                                    <input type="email" id="email" class="form-control" v-model="email" placeholder="输入邮箱地址">
+                                </label>
+                               
+                            </div>
+                        </form>
+                        <div class="textarea">
+                            <!--                        v-bind:disable="{disable:able_is}"-->
+                            <textarea name="" id="" class="form-control" rows="10" v-model="textarea"></textarea>
+                            <input type="submit" class="btn btn-success btn_test" value="写笔记或建议" v-on:click="submit">
+                        </div>
+                    </div>
+                </transition>
+            </div>
             <!--                //评论区内容-->
             <div class="p_gp" v-for="(item,index) in Object" :key="item.text">
                 <i_tri v-bind:email="item.email" :name="item.name"></i_tri>
                 <p class="bg-light">{{item.textarea}}</p>
                 <div class="text-success plXx row">
-                    <i class="fa fa-user-o col-8">{{" "+item.name+" "}}
+                    <i class="fa fa-user-o col-sm-5">{{" "+item.name+" "}}
                         <span class="bg-light text-muted">
                         {{"["+item.date+"]"}}
                         </span>
+                        <hr>
                     </i>
+
                     <i_heart @object="obj"></i_heart>
                 </div>
                 <hr>
             </div>
-            <!--进入评论-->
-            <div class="wenBen">
-                <p><span v-on:click.stop="holder">点击,进入评论</span></p>
-                <div class="alert alert-success text-center" v-if="p_xian">
-                    <strong>警告!</strong> {{niHao}}
-                </div>
-            </div>
-            <!--            评论界面-->
-            <transition name="vue"
-                        enter-active-class="animated fadeInUp"
-                        leave-active-class="animated fadeOut">
-                <div v-if="change_text">
-                    <form action="" class="form-group row">
-                        <div class="name col-sm-2">
-                            <label for="name">用户名：</label>
-                            <input type="text" ref="id" name="name" class="form-control" v-model="text" placeholder="输入用户名">
-                        </div>
-                        <div class="email col-sm-4">
-                            <label for="email">邮件：</label>
-                            <input type="email" name="email" class="form-control" v-model="email" placeholder="输入邮箱地址">
-                        </div>
-                    </form>
-                    <div class="textarea">
-<!--                        v-bind:disable="{disable:able_is}"-->
-                        <textarea name="" id="" class="form-control" rows="10" v-model="textarea"></textarea>
-                        <input type="submit" class="btn btn-success btn_test" value="评论" v-on:click="submit">
-                    </div>
-                </div>
-            </transition>
-            <div class="w-1000 copyright text-center">
-                Copyright © 2013-2019
-                <strong><a href="index.html" target="_blank">程序哈</a></strong>
-                &nbsp;
-                <strong><a href="javascript:void(0);">web前端程序哈</a></strong>
-                All Rights Reserved.
-            </div>
+
+
         </div>
+    </div>
+    <div class="w-1000 copyright text-center">
+        Copyright © 2013-2019
+        <strong><a href="index.html" target="_blank">程序哈</a></strong>
+        &nbsp;
+        <strong><a href="javascript:void(0);">web前端程序哈</a></strong>
+        All Rights Reserved.
     </div>
 </div>
 
@@ -225,7 +247,8 @@
         </div>
         <hr>
 
-    </div>`
+    </div>
+`
     }
     var hl={
         template:
@@ -284,7 +307,6 @@
         <h2>HTML/CSS/JS 在线工具</h2>
         <p>HTML/CSS/JS 在线工具可以在线编辑 HTML、CSS、JS 代码，并实时查看效果</p>
         <a href="https://c.runoob.com/front-end/61" target="_blank" class="btn btn-success" role="button">在线工具</a>
-        <hr>
         <div class="foot">
 
         </div>
@@ -333,21 +355,19 @@
             <p>运行结果如下：</p>
             <img src="./images/result.png" alt="result" width="800px" height="400px">
         </div>
-        <hr>
 
     </div>
-
-
+<hr>
 </div>
 `
     }
-    var element=``
     Vue.component("i_heart",{
             props:[],
             data: function () {
                 return{
                     delete_i:false,
                     heart_i:false,
+                    number:0,
                     heart_o:'heart_o',
                     heart_ha:'heart_ha',
                     ob:[]
@@ -356,24 +376,40 @@
             methods: {
                 async deleteList(){
                     this.delete_i=!this.delete_i
-                    await axios
-                        .get('http://localhost:4000/login')
-                        .then(res=>{
-                            // window.location.reload()
-                        //     for (var i=0;i<res.data.length;i++){
-                        //
-                        //         var de={name:res.data[i],email:res.data[i],textarea:res.data[i],date:null}
-                        // }
-                            this.$emit('object',this.ob)
-                            // console.log(this.ob)
-                        })
+                    let firm=confirm("是否确认删除该评论")
+                    if(firm==true){
+                        await axios
+                            .get('http://localhost:4000/login')
+                            .then(res=>{
+                                // for(var i =0;i<response.data.length;i++){
+                                //     var s = {name: response.data[i].name, email: response.data[i].email, textarea: response.data[i].text, date: this.date}
+                                //     this.Object.push(s)
+                                // }
+                                // window.location.reload()
+                                //     for (var i=0;i<res.data.length;i++){
+                                //
+                                //         var de={name:res.data[i],email:res.data[i],textarea:res.data[i],date:null}
+                                // }
+
+
+                                // console.log(this.ob)
+                            })
+                        //将服务器对应的数组传到组件，然后代替this.ob
+                        this.$emit('object',this.ob)
+                        alert("删除成功")
+                    }else{
+                        this.delete_i=!this.delete_i
+                    }
+
                 },
                 objHolder(){
+                    this.heart_i=!this.heart_i;
+                    this.number++;
                 }
             },
-            template:`<div class="fontAwesome col-4 row">
-                        <i class="fa fa-heart col-6 text-center" v-on:click="heart_i=!heart_i" v-bind:class="[heart_i?heart_ha:heart_o]"></i>
-                        <i class="fa fa-trash col-6 text-center" v-on:click="deleteList" v-bind:class="[delete_i?heart_ha:heart_o]"></i>
+            template:`<div class="fontAwesome col-sm-6 row">
+                        <i class="fa fa-heart col-3 offset-2" v-on:click="objHolder" v-bind:class="[heart_i?heart_ha:heart_o]"><span>{{number}}</span></i>
+                        <i class="fa fa-trash col-2 offset-4 text-center" v-on:click="deleteList" v-bind:class="[delete_i?heart_ha:heart_o]"></i>
                       </div>`
         }
     ),
@@ -432,14 +468,10 @@
             input_text:'',
             textarea: '',
             info:null,
-            // able:{
-            //     disable: 'disable'
-            // },
             niHao: '评论内容不完整！！！！',
             p_xian: false,
             heart_is: false,
-            date: new Date().toLocaleString(),
-            Object: [{name:'yunshaohuo',email:'894419445@qq.com',textarea:'出自唐代杜牧的《题乌江亭》胜败兵家事不期，包羞忍耻是男儿。江东子弟多才俊，卷土重来未可知。',date:new Date().toLocaleString()}],
+            Object: [],
             aside:[{name:'HTML简介',id:"introducation"},{name:'HTML编辑器',id:'install'},{name:'HTML元素',id:'introducation'},
                 {name:'HTML属性',id:"install"},{name:'HTML表格',id:"introducation"},{name:'HTML脚本',id:"install"},{name:'HTML速查列表',id:"introducation"}]
         },
@@ -459,19 +491,20 @@
                     return
                 } else {
                     //空字符串
-                    axios
-                        .post('http://localhost:4000/host',{
+                    axios.post('http://localhost:4000/host',{
                             name:this.text,
                             email:this.email,
                             text:this.textarea
                         })
                         .then(res=>{
-                            var dui = {name: res.data.name, email: res.data.email, textarea: res.data.text, date: this.date}
-                            this.Object.push(dui)
+                            var dui = {name: res.data.name, email: res.data.email, textarea: res.data.text, date: new Date().toLocaleString()}
+                            this.Object.unshift(dui)
+                            
                         })
                     this.able_is=false
                     this.p_xian=false
                     this.email = this.textarea = this.text = ""
+
                 }
             },
             heart(){
@@ -482,7 +515,7 @@
             },
             search(){
                 if (!this.input_text) {
-                    alert("输入数据ok？")
+                    alert("输入数据")
                     return
                 }else if(this.aside.indexOf(this.input_text) !==-1){
 
@@ -490,21 +523,30 @@
 
 
             }
-        },
+        }
+        ,
         created(){
             axios
                 .get('http://localhost:4000/administrator')
                 .then(response => {
                     if(response.data.length ==0) {return}
                         for(var i =0;i<response.data.length;i++){
-                            var s = {name: response.data[i].name, email: response.data[i].email, textarea: response.data[i].text, date: this.date}
-                            this.Object.push(s)
+                            var s = {name: response.data[i].name, email: response.data[i].email, textarea: response.data[i].text, date: new Date().toLocaleString()}
+                            this.Object.unshift(s)
+
                         }
+
                     }
                 )
 
         },
         mounted() {
+        // if(this.$refs.td.children.length==0){
+        //     let b=document.createElement("span")
+        //     var text=document.createTextNode("心之想，评而论")
+        //     b.appendChild(text)
+        //     this.$refs.td.insertBefore(b,this.$refs.td.firstChild)
+        // }
 
         },
         router:obj
