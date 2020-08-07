@@ -1,7 +1,7 @@
 body {
     padding: 0px;
     margin: 0;
-    height: 1500px;
+
 
 
 }
@@ -9,6 +9,9 @@ body {
 /*模板中样式*/
 .content span{
     color: #28a76c;
+}
+.content{
+    
 }
 .text_ul ul,.what ul,.ul_bq ul{
     margin: 20px;
@@ -40,7 +43,7 @@ a:hover {
 
 
 .main_content {
-    margin-top: 40px;
+    margin-top: 5px;
 }
 /*宽度整个屏幕*/
 .container-fluid {
@@ -49,19 +52,17 @@ a:hover {
     color: white;
     background-color: #f6f6f6;
 }
-
-.nav-item {
-    margin: 0px 10px;
+.nav-item{
+    box-sizing: border-box;
 }
+
+
 /*星星*/
 .disabled i{
     margin-left: 10px;
     font-size: 1rem;
 }
 /*导航栏无下划线*/
-a:hover{
-
-}
 .form-control {
     height: 30px;
 }
@@ -82,11 +83,6 @@ blockquote {
     background-color: #dddddd;
 }
 
-.copyright {
-
-}
-.wenBen{
-}
 .wenBen p {
     font-size: 20px;
     text-align: center;
@@ -159,7 +155,7 @@ blockquote {
     font-size: 1rem;
 }
 .area_text {
-    margin-top: 10px;
+    margin-top: 5px;
 
     background: #f6f6f6;
 }
@@ -168,9 +164,7 @@ blockquote {
     color: #28a76c;
 }
 
-.bg-light, .plXx {
-    padding-left: 20px;
-}
+
 
 .fa {
 
@@ -198,9 +192,7 @@ blockquote {
 .navbar-nav li a:hover{
     text-decoration: none;
 }
-.content{
 
-}
 .gu{
     position: fixed;
     right: 10px;
@@ -263,10 +255,11 @@ blockquote {
 
 }
 .fa-heart,.fa-trash{
-    box-shadow: 0px 1px 4px #28a745;
+    box-shadow: 0px 1px 8px #a6d6b5;
     height: 30px;
     line-height: 30px;
-    border-radius: 5px;
+    width: 60px;
+    border-radius: 15px;
     padding: 0px 5px 0px 5px;
 }
 
@@ -280,20 +273,26 @@ blockquote {
 }
 /*右侧栏*/
 .aside_right{
-    background: #11998e;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    display: flex;
+    justify-content: center;
+}
+.box_right{
     display: flex;
     justify-content: center;
     align-items: center;
+    background: #11998e;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #38ef7d, #11998e); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     writing-mode: vertical-lr;
     letter-spacing: 80px;
     font-size: 20px;
-    border-radius: 10px;
-    margin: 0px auto;
-
+    border-radius: 4px;
+    width: 90%;
+    
 }
-
+.aside{
+    padding: 0px;
+}
 .content{
     background: #f6f6f6;
 }
@@ -313,3 +312,17 @@ blockquote {
 label>input{
     margin-top: 4px;
 }
+.fa-clock-o{
+   display: flex;
+   justify-content: flex-start;
+   align-items: center;
+    
+}
+/* 评论区
+ */
+ .text_area{
+     margin-left: 15px;
+ }
+ .text_mag{
+    margin-left: 5px;
+ }
