@@ -1,5 +1,6 @@
 ﻿<!DOCTYPE html>
 <html>
+
 <head>
     <title>程序哈前端学习网站</title>
     <meta charset="utf-8">
@@ -15,179 +16,183 @@
     <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
     <script src="javascripts/localstorage.js"></script>
 </head>
+
 <body>
 
-<div class="all">
-    <div class="gu">
-        <qrcode_i></qrcode_i>
-    </div>
-    <div class="container-fluid">
-        <nav class="navbar navbar-expand-sm bg navbar-dark row">
-            <div class="title col-sm-6">
-                <a class="navbar-brand " href="#" title="前端程序哈">
-                    <img src="./images/hashiqi.png" class="" alt="nav_hashiqi" width="70px" height="70px">
-                    <span style="font-size: 12px;color: lightcoral">前</span>
-                    <span style="font-size: 16px;color: orange">端</span>
-                    <span style="font-size: 20px;color: yellowgreen">程</span>
-                    <span style="font-size: 24px;color: #42b983;">序</span>
-                    <span style="font-size: 28px;color: rebeccapurple">哈</span>
-                </a>
-            </div>
-            <form class="form-inline col-sm-6" target="_blank">
-                <input class="form-control col-sm-5" type="text" placeholder="Search"  v-model="input_text">
-                <input type="button" class="btn btn-success col-sm-2 offset-sm-1" value="Search" @click="search">
-            </form>
-        </nav>
-        <nav class="navbar_li navbar-expand-sm navbar-dark text-light">
-            <!-- Links -->
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <router-link to="/">
-                        <a class="nav-link" href="javascript:void(0)">HTML</a>
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">CSS</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">javaScript</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="xiangmu.html">web前端框架</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="xiangmu.html">前端开发工具</a>
-                </li>
-            </ul>
-        </nav>
-    </div>
-    <div class="main_content row">
-        <div class="aside col-sm-2">
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class=" nav-link disabled" href="#">
-                        HTML教程
-                        <i class="fa fa-star-half-full"></i>
+    <div class="all">
+        <div class="gu">
+            <qrcode_i></qrcode_i>
+        </div>
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-sm bg navbar-dark row">
+                <div class="title col-sm-6">
+                    <a class="navbar-brand " href="#" title="前端程序哈">
+                        <img src="./images/hashiqi.png" class="" alt="nav_hashiqi" width="70px" height="70px">
+                        <span style="font-size: 12px;color: lightcoral">前</span>
+                        <span style="font-size: 16px;color: orange">端</span>
+                        <span style="font-size: 20px;color: yellowgreen">程</span>
+                        <span style="font-size: 24px;color: #42b983;">序</span>
+                        <span style="font-size: 28px;color: rebeccapurple">哈</span>
                     </a>
-                </li>
-                <li class="nav-item" v-for="aside_item in aside">
-                    <router-link :to=aside_item.id>
-                        <a class=" nav-link" href="javascript:void(0)">{{aside_item.name}}</a>
-                    </router-link>
-
-                </li>
-            </ul>
-            <ul class="nav flex-column">
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#">HTML 参考手册
-                        <i class="fa fa-star-half-full"></i>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <router-link to="/install">
-                        <a class="nav-link" href="#">html标签列表</a>
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link to="/install">
-                        <a class="nav-link" href="#">http消息</a>
-                    </router-link>
-                </li>
-                <li class="nav-item">
-                    <router-link to="/install">
-                        <a class="nav-link" href="#">http方法</a>
-                    </router-link>
-                </li>
-            </ul>
-        </div>
-        <!--        h1 要获取-->
-
-        <div class="content col-sm-8">
-            <transition name="vue"
-                        enter-active-class="animated fadeIn"
-                        leave-active-class="animated fadeOut">
-            <router-view>
-            </router-view>
-            </transition>
-        </div>
-
-        <!--侧边栏-->
-        <div class="aside_right col-sm-1">
-            <p class="p_row">快来打广告</p>
-        </div>
-        <div class="area_text container col-sm-8">
-            <div class="comment">
-                <!--进入评论-->
-                <div class="wenBen">
-                    <p><span v-on:click.stop="holder">点击,进入评论</span></p>
-                    <div class="alert alert-success text-center" v-if="p_xian">
-                        <strong>警告!</strong> {{niHao}}
-                    </div>
                 </div>
-                <!--            评论界面-->
-                <transition name="vue"
-                            enter-active-class="animated fadeIn"
-                            leave-active-class="animated fadeOut">
-                            <div class="niclass"  v-if="!change_text">
-                                <p class="ni">在此！言出学问，才是学问。</p>
-                            </div>
-                    <div v-else class="comment_h">
-                        <form action="" class="form-group row">
-                            <div class="name col-sm-3">
-                                <label for="name">
-                                    用户名：
-                                    <input type="text" ref="id" id="name" class="form-control" v-model="text" placeholder="输入用户名" autocomplete="off">
-                                </label>
-                                
-                            </div>
-                            <div class="email col-sm-4">
-                                <label for="email">
-                                    邮件：
-                                    <input type="email" id="email" class="form-control" v-model="email" placeholder="输入邮箱地址">
-                                </label>
-                               
-                            </div>
-                        </form>
-                        <div class="textarea">
-                            <!--                        v-bind:disable="{disable:able_is}"-->
-                            <textarea name="" id="" class="form-control" rows="10" v-model="textarea"></textarea>
-                            <input type="submit" class="btn btn-success btn_test" value="写笔记或建议" v-on:click="submit">
-                        </div>
-                    </div>
+                <form class="form-inline col-sm-6 row" target="_blank">
+                    <input class="form-control col-6 offset-2" type="text" placeholder="Search" v-model="input_text">
+                    <input type="button" class="btn btn-success col-2 offset-1" value="Search" @click="search">
+                </form>
+            </nav>
+            <nav class="navbar_li navbar-expand-sm navbar-dark text-light">
+                <!-- Links -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <router-link to="/">
+                            <a class="nav-link" href="javascript:void(0)">HTML</a>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">CSS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">javaScript</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="xiangmu.html">web前端框架</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="xiangmu.html">前端开发工具</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="main_content row">
+            <div class="col-sm-2">
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class=" nav-link disabled" href="#">
+                            HTML教程
+                            <i class="fa fa-star-half-full"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item" v-for="aside_item in aside">
+                        <router-link :to=aside_item.id>
+                            <a class=" nav-link" href="javascript:void(0)">{{aside_item.name}}</a>
+                        </router-link>
+
+                    </li>
+                </ul>
+                <ul class="nav flex-column">
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#">HTML 参考手册
+                            <i class="fa fa-star-half-full"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/install">
+                            <a class="nav-link" href="#">html标签列表</a>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/install">
+                            <a class="nav-link" href="#">http消息</a>
+                        </router-link>
+                    </li>
+                    <li class="nav-item">
+                        <router-link to="/install">
+                            <a class="nav-link" href="#">http方法</a>
+                        </router-link>
+                    </li>
+                </ul>
+            </div>
+            <!--        h1 要获取-->
+
+            <div class="content col-sm-8">
+                <transition name="vue" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                    <router-view>
+                    </router-view>
                 </transition>
             </div>
-            <!--                //评论区内容-->
-            <div class="p_gp" v-for="(item,index) in Object" :key="item.text">
-                <i_tri v-bind:email="item.email" :name="item.name"></i_tri>
-                <p class="bg-light">{{item.textarea}}</p>
-                <div class="text-success plXx row">
-                    <i class="fa fa-user-o col-sm-5">{{" "+item.name+" "}}
-                        <span class="bg-light text-muted">
-                        {{"["+item.date+"]"}}
-                        </span>
-                        <hr>
-                    </i>
 
-                    <i_heart @object="obj"></i_heart>
+            <!--侧边栏-->
+            <div class="aside_right col-sm-2">
+                <div class="box_right">
+                    <p class="p_row">快来打广告</p>
                 </div>
-                <hr>
+
             </div>
+            <div class="area_text container col-sm-8">
+                <div class="comment">
+                    <!--进入评论-->
+                    <div class="wenBen">
+                        <p><span v-on:click.stop="holder">点击,进入评论</span></p>
+                        <div class="alert alert-success text-center" v-if="p_xian">
+                            <strong>警告!</strong> {{niHao}}
+                        </div>
+                    </div>
+                    <!--            评论界面-->
+                    <transition name="vue" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                        <div class="niclass" v-if="!change_text">
+                            <p class="ni">在此！言出学问，才是学问。</p>
+                        </div>
+                        <div v-else class="comment_h">
+                            <form action="" class="form-group row">
+                                <div class="name col-4">
+                                    <label for="name">
+                                        用户名：
+                                        <input type="text" ref="id" id="name" class="form-control" v-model="text"
+                                            placeholder="输入用户名" autocomplete="off">
+                                    </label>
+
+                                </div>
+                                <div class="email col-5 offset-1">
+                                    <label for="email">
+                                        邮件：
+                                        <input type="email" id="email" class="form-control" v-model="email"
+                                            placeholder="输入邮箱地址">
+                                    </label>
+
+                                </div>
+                            </form>
+                            <div class="textarea">
+                                <!--                        v-bind:disable="{disable:able_is}"-->
+                                <textarea name="" id="" class="form-control" rows="10" v-model="textarea"></textarea>
+                                <input type="submit" class="btn btn-success btn_test" value="写笔记或建议"
+                                    v-on:click="submit">
+                            </div>
+                        </div>
+                    </transition>
+                </div>
+                <!--                //评论区内容-->
+                <div class="p_gp" v-for="(item,index) in Object" :key="item.text">
+                    <i_tri v-bind:email="item.email" :name="item.name"></i_tri>
+                    <p class="bg-light text_area">{{item.textarea}}</p>
+                    <div class="text-success plXx row text_area">
+                        <i class="fa col-7 fa-clock-o">
+                            <span class="bg-light text-muted text_mag">
+                                {{"["+item.date+"]"}}
+                            </span>
+                        </i>
+                        <hr>
+
+                        <i_heart @object="obj"></i_heart>
+                    </div>
+                    <hr>
+                </div>
 
 
+            </div>
+        </div>
+
+        <div class="w-1000 copyright text-center">
+            Copyright © 2013-2019
+            <strong><a href="index.html" target="_blank">程序哈</a></strong>
+            &nbsp;
+            <strong><a href="javascript:void(0);">web前端程序哈</a></strong>
+            All Rights Reserved.
         </div>
     </div>
-    <div class="w-1000 copyright text-center">
-        Copyright © 2013-2019
-        <strong><a href="index.html" target="_blank">程序哈</a></strong>
-        &nbsp;
-        <strong><a href="javascript:void(0);">web前端程序哈</a></strong>
-        All Rights Reserved.
-    </div>
-</div>
 
-<script>
-    var introducation={
-        template:`<div class="content">
+    <script>
+        var introducation = {
+            template: `<div class="content">
         <div class="header_yin">
         <h1>HTML <span>实例</span></h1>
             <h2>HTML 实例</h2>
@@ -249,10 +254,10 @@
 
     </div>
 `
-    }
-    var hl={
-        template:
-            `<div class="da">
+        }
+        var hl = {
+            template:
+                `<div class="da">
     <div class="text">
             <h1>html <span>教程</span></h1>
             <p>超文本标记语言（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准标记语言。</p>
@@ -312,9 +317,9 @@
         </div>
         <hr>
 </div>`
-    }
-    var install={
-        template:`<div class="content">
+        }
+        var install = {
+            template: `<div class="content">
     <article>
         <h1>HTML <span>编辑器</span></h1>
         <hr>
@@ -351,36 +356,36 @@
         <div class="run">
             <h3>步骤 3: 在浏览器中运行这个 HTML 文件</h3>
             <p>如图下，选择在默认浏览器打开（也可以其他的浏览器）:</p>
-            <img src="./images/run.png" alt="run">
+            <img src="./images/run.png" alt="run" width="200px" height="300px">
             <p>运行结果如下：</p>
-            <img src="./images/result.png" alt="result" width="800px" height="400px">
+            <img src="./images/result.png" alt="result" width="200px" height="200px">
         </div>
 
     </div>
 <hr>
 </div>
 `
-    }
-    Vue.component("i_heart",{
-            props:[],
+        }
+        Vue.component("i_heart", {
+            props: [],
             data: function () {
-                return{
-                    delete_i:false,
-                    heart_i:false,
-                    number:0,
-                    heart_o:'heart_o',
-                    heart_ha:'heart_ha',
-                    ob:[]
+                return {
+                    delete_i: false,
+                    heart_i: false,
+                    number: 0,
+                    heart_o: 'heart_o',
+                    heart_ha: 'heart_ha',
+                    ob: []
                 }
             },
             methods: {
-                async deleteList(){
-                    this.delete_i=!this.delete_i
-                    let firm=confirm("是否确认删除该评论")
-                    if(firm==true){
+                async deleteList() {
+                    this.delete_i = !this.delete_i
+                    let firm = confirm("是否确认删除该评论")
+                    if (firm == true) {
                         await axios
                             .get('http://localhost:4000/login')
-                            .then(res=>{
+                            .then(res => {
                                 // for(var i =0;i<response.data.length;i++){
                                 //     var s = {name: response.data[i].name, email: response.data[i].email, textarea: response.data[i].text, date: this.date}
                                 //     this.Object.push(s)
@@ -395,37 +400,37 @@
                                 // console.log(this.ob)
                             })
                         //将服务器对应的数组传到组件，然后代替this.ob
-                        this.$emit('object',this.ob)
+                        this.$emit('object', this.ob)
                         alert("删除成功")
-                    }else{
-                        this.delete_i=!this.delete_i
+                    } else {
+                        this.delete_i = !this.delete_i
                     }
 
                 },
-                objHolder(){
-                    this.heart_i=!this.heart_i;
+                objHolder() {
+                    this.heart_i = !this.heart_i;
                     this.number++;
                 }
             },
-            template:`<div class="fontAwesome col-sm-6 row">
-                        <i class="fa fa-heart col-3 offset-2" v-on:click="objHolder" v-bind:class="[heart_i?heart_ha:heart_o]"><span>{{number}}</span></i>
-                        <i class="fa fa-trash col-2 offset-4 text-center" v-on:click="deleteList" v-bind:class="[delete_i?heart_ha:heart_o]"></i>
+            template: `<div class="fontAwesome col-5">
+                        <i class="fa fa-heart col-5" v-on:click="objHolder" v-bind:class="[heart_i?heart_ha:heart_o]"><span>{{number}}</span></i>
+                        <i class="fa fa-trash col-3 offset-3 text-center" v-on:click="deleteList" v-bind:class="[delete_i?heart_ha:heart_o]"></i>
                       </div>`
         }
-    ),
-     Vue.component('i_tri',{
-            props:['name','email'],
-            data:function () {
-                return{
-                    tri_is:false
-                }
-            },
-            methods: {
-                triHolder(){
-                    this.tri_is=!this.tri_is
-                }
-            },
-            template:`<p class="fa fa-user-circle-o col-sm-6">
+        ),
+            Vue.component('i_tri', {
+                props: ['name', 'email'],
+                data: function () {
+                    return {
+                        tri_is: false
+                    }
+                },
+                methods: {
+                    triHolder() {
+                        this.tri_is = !this.tri_is
+                    }
+                },
+                template: `<p class="fa fa-user-circle-o col-sm-6">
                     <span class="p_hover" v-on:click="triHolder">
                         <i class="spanList" v-if="tri_is">
                             <span class="tri"></span>
@@ -434,123 +439,129 @@
                     </span>
                     评论：
                 </p>`
-        })
-    Vue.component('qrcode_i',{
-        data(){
-            return{
-                image_is:false
-            }
-        },
-        methods:{
-            qrCode(){
-                this.image_is=!this.image_is
-            }
-        },
-        template:`
+            })
+        Vue.component('qrcode_i', {
+            data() {
+                return {
+                    image_is: false
+                }
+            },
+            methods: {
+                qrCode() {
+                    this.image_is = !this.image_is
+                }
+            },
+            template: `
     <div class="dui">
         <div class="ding"><a href="#"><i class="fa fa-arrow-up"></i></a></div>
         <div class="ma"><a href="javascript:void(0)" @click.stop="qrCode"><i class="fa fa-qrcode" aria-hidden="true"></i></a></div>
         <img src="images/qrcode.png" alt="二维码" v-if="image_is">
     </div>`
-    })
-    var obj=new VueRouter({
-        routes:[{path:"/",component:hl,}
-            ,{path: "/introducation",component:introducation},
-            {path:"/install",component:install}
-        ]
-    })
-    var vm = new Vue({
-        el: ".all",
-        data: {
-            change_text: false,
-            text: '',
-            email: '',
-            input_text:'',
-            textarea: '',
-            info:null,
-            niHao: '评论内容不完整！！！！',
-            p_xian: false,
-            heart_is: false,
-            Object: [],
-            aside:[{name:'HTML简介',id:"introducation"},{name:'HTML编辑器',id:'install'},{name:'HTML元素',id:'introducation'},
-                {name:'HTML属性',id:"install"},{name:'HTML表格',id:"introducation"},{name:'HTML脚本',id:"install"},{name:'HTML速查列表',id:"introducation"}]
-        },
-        methods: {
-            obj(ob){
-                this.Object=ob
+        })
+        var obj = new VueRouter({
+            routes: [{ path: "/", component: hl, }
+                , { path: "/introducation", component: introducation },
+            { path: "/install", component: install }
+            ]
+        })
+        var vm = new Vue({
+            el: ".all",
+            data: {
+                change_text: false,
+                text: '',
+                email: '',
+                input_text: '',
+                textarea: '',
+                info: null,
+                date: "",
+                niHao: '评论内容不完整！！！！',
+                p_xian: false,
+                heart_is: false,
+                Object: [{ name: 'zhou', email: '894419445@qq.comt', textarea: '任何的限制都源自于内心', date: new Date().toLocaleString() }],
+                aside: [{ name: 'HTML简介', id: "introducation" }, { name: 'HTML编辑器', id: 'install' }, { name: 'HTML元素', id: 'introducation' },
+                { name: 'HTML属性', id: "install" }, { name: 'HTML表格', id: "introducation" }, { name: 'HTML脚本', id: "install" }, { name: 'HTML速查列表', id: "introducation" }]
             },
-            holder() {
-                this.change_text = !this.change_text
-                this.p_xian = false
-            },
-            submit() {
-                if (this.email.length == 0 || this.text.length == 0 || this.textarea.length == 0) {
-                    this.p_xian = true
+            methods: {
+                obj(ob) {
+                    this.Object = ob
+                },
+                holder() {
+                    this.change_text = !this.change_text
+                    this.p_xian = false
+                },
+                submit() {
+                    if (this.email.length == 0 || this.text.length == 0 || this.textarea.length == 0) {
+                        this.p_xian = true
 
-                    this.myFocus()
-                    return
-                } else {
-                    //空字符串
-                    axios.post('http://localhost:4000/host',{
-                            name:this.text,
-                            email:this.email,
-                            text:this.textarea
+                        this.myFocus()
+                        return
+                    } else {
+                        //空字符串
+
+                        axios.post('http://localhost:4000/host', {
+
+                            name: this.text,
+                            email: this.email,
+                            text: this.textarea,
+                            date: new Date().toLocaleString()
                         })
-                        .then(res=>{
-                            var dui = {name: res.data.name, email: res.data.email, textarea: res.data.text, date: new Date().toLocaleString()}
-                            this.Object.unshift(dui)
-                            
-                        })
-                    this.able_is=false
-                    this.p_xian=false
-                    this.email = this.textarea = this.text = ""
+                            .then(res => {
+                                console.log(res)
+                                var dui = { name: res.data.name, email: res.data.email, textarea: res.data.text, date: res.data.date }
+                                this.Object.unshift(dui)
+
+                            })
+                        this.able_is = false
+                        this.p_xian = false
+                        this.email = this.textarea = this.text = ""
+
+                    }
+                },
+                heart() {
+                    this.heart_is = !this.heart_is
+                },
+                myFocus() {
+                    this.$refs.id.focus()
+                },
+                search() {
+                    if (!this.input_text) {
+                        alert("输入数据")
+                        return
+                    } else if (this.aside.indexOf(this.input_text) !== -1) {
+
+                    }
+
 
                 }
-            },
-            heart(){
-                this.heart_is=!this.heart_is
-            },
-            myFocus(){
-                this.$refs.id.focus()
-            },
-            search(){
-                if (!this.input_text) {
-                    alert("输入数据")
-                    return
-                }else if(this.aside.indexOf(this.input_text) !==-1){
-
-                }
-
-
             }
-        }
-        ,
-        created(){
-            axios
-                .get('http://localhost:4000/administrator')
-                .then(response => {
-                    if(response.data.length ==0) {return}
-                        for(var i =0;i<response.data.length;i++){
-                            var s = {name: response.data[i].name, email: response.data[i].email, textarea: response.data[i].text, date: new Date().toLocaleString()}
+            ,
+            created() {
+                axios
+                    .get('http://localhost:4000/administrator')
+                    .then(response => {
+                        if (response.data.length == 0) { return }
+                        for (var i = 0; i < response.data.length; i++) {
+                            var s = { name: response.data[i].name, email: response.data[i].email, textarea: response.data[i].text, date: response.data[i].date }
                             this.Object.unshift(s)
 
                         }
 
                     }
-                )
+                    )
 
-        },
-        mounted() {
-        // if(this.$refs.td.children.length==0){
-        //     let b=document.createElement("span")
-        //     var text=document.createTextNode("心之想，评而论")
-        //     b.appendChild(text)
-        //     this.$refs.td.insertBefore(b,this.$refs.td.firstChild)
-        // }
+            },
+            mounted() {
+                // if(this.$refs.td.children.length==0){
+                //     let b=document.createElement("span")
+                //     var text=document.createTextNode("心之想，评而论")
+                //     b.appendChild(text)
+                //     this.$refs.td.insertBefore(b,this.$refs.td.firstChild)
+                // }
 
-        },
-        router:obj
-    })
-</script>
+            },
+            router: obj
+        })
+    </script>
 </body>
+
 </html>
