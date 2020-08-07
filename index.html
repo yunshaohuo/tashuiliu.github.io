@@ -10,16 +10,24 @@
     <script src="https://cdn.staticfile.org/popper.js/1.15.0/umd/popper.min.js"></script>
     <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
     <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="javascripts/axios.min.js"></script>
     <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="stylesheets/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <link href="" rel="stylesheet" type="text/css">
     <script src="javascripts/localstorage.js"></script>
 </head>
 
 <body>
-
+    <div id="loading" v-show="lod">
+        <ul>
+          <div id="one"><li></li></div>
+          <div id="two"><li></li></div>
+          <div id="three"><li></li></div>
+          <div id="four"><li></li></div>
+        </ul>
+      </div>
     <div class="all">
+        
         <div class="gu">
             <qrcode_i></qrcode_i>
         </div>
@@ -413,7 +421,7 @@
                 }
             },
             template: `<div class="fontAwesome col-5">
-                        <i class="fa fa-heart col-5" v-on:click="objHolder" v-bind:class="[heart_i?heart_ha:heart_o]"><span>{{number}}</span></i>
+                        <i class="fa fa-heart col-5 offset-1" v-on:click="objHolder" v-bind:class="[heart_i?heart_ha:heart_o]"><span>{{number}}</span></i>
                         <i class="fa fa-trash col-3 offset-3 text-center" v-on:click="deleteList" v-bind:class="[delete_i?heart_ha:heart_o]"></i>
                       </div>`
         }
@@ -458,6 +466,12 @@
         <img src="images/qrcode.png" alt="二维码" v-if="image_is">
     </div>`
         })
+        // Vue.component('loading_div', {
+        //     data() {
+        //         return {lod:"true"}
+        //     },
+        //     template: ``
+        // })
         var obj = new VueRouter({
             routes: [{ path: "/", component: hl, }
                 , { path: "/introducation", component: introducation },
@@ -536,6 +550,10 @@
             }
             ,
             created() {
+                let loading=document.getElementById("loading")
+                if(loading){
+                    document.body.removeChild(loading);
+                }
                 axios
                     .get('http://localhost:4000/administrator')
                     .then(response => {
@@ -557,6 +575,8 @@
                 //     b.appendChild(text)
                 //     this.$refs.td.insertBefore(b,this.$refs.td.firstChild)
                 // }
+                
+
 
             },
             router: obj
