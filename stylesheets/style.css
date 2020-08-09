@@ -33,21 +33,46 @@ body {
 a {
     color: #28a76c;
     text-decoration: none;
-    background-color: transparent;
+
 }
 
 a:hover {
     color: #59ce7d;
 }
 
-.flex-column .nav-item .nav-link {
-    border-bottom: #dddddd 1px solid;
-    background-color: #f6f4f0;
+.flex-column .nav-item {
+    box-shadow: 0px 0px 4px #dddddd;
+  
     font-size: 14px;
 }
 
 .navbar-dark .navbar-nav .nav-link {
     color: #f8f9fa;
+}
+.aside_a{
+    background-color: #f6f6f6;
+}
+.aside_a:hover {
+    color:#29b148;
+    font-size: 15px;
+}
+.active_li{
+    background: #A1FFCE;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FAFFD1, #A1FFCE); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+.a_href{
+    font-size: 14px;
+    font-family:proxima-nova,'Helvetica Neue',Helvetica,Arial,sans-serif;
+}
+.aside_a:active{
+    background-color: #59ce7d;
+}
+.bar_top{
+    background: #53d371;
+    color: white !important;
+    font-weight: 600;
 }
 
 
@@ -191,9 +216,7 @@ blockquote {
     position: relative;
 }
 .navbar_li{
-    background: #11998e;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #38ef7d, #11998e);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #38ef7d, #11998e);
+    background:rgb(83,211,113);
 }
 .navbar-nav{
     padding: 0px;
