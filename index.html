@@ -11,21 +11,12 @@
     <script src="https://cdn.staticfile.org/vue/2.4.2/vue.min.js"></script>
     <script src="https://unpkg.com/vue-router@2.0.0/dist/vue-router.js"></script>
     <script src="javascripts/axios.min.js"></script>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="font-awesome-4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="stylesheets/style.css">
-    <link href="" rel="stylesheet" type="text/css">
-    <script src="javascripts/localstorage.js"></script>
 </head>
 
 <body>
-    <div id="loading" v-show="lod">
-        <ul>
-          <div id="one"><li></li></div>
-          <div id="two"><li></li></div>
-          <div id="three"><li></li></div>
-          <div id="four"><li></li></div>
-        </ul>
-      </div>
+   
     <div class="all">
         
         <div class="gu">
@@ -53,20 +44,20 @@
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <router-link to="/">
-                            <a class="nav-link" href="javascript:void(0)">HTML</a>
+                            <a class="nav-link a_href" href="javascript:void(0)">HTML</a>
                         </router-link>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">CSS</a>
+                        <a class="nav-link a_href" href="#">CSS</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">javaScript</a>
+                        <a class="nav-link a_href" href="#">javaScript</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="xiangmu.html">web前端框架</a>
+                        <a class="nav-link a_href" href="xiangmu.html">web前端框架</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="xiangmu.html">前端开发工具</a>
+                        <a class="nav-link a_href" href="xiangmu.html">前端开发工具</a>
                     </li>
                 </ul>
             </nav>
@@ -75,37 +66,37 @@
             <div class="col-sm-2">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class=" nav-link disabled" href="#">
+                        <a class=" nav-link disabled bar_top" href="#">
                             HTML教程
                             <i class="fa fa-star-half-full"></i>
                         </a>
                     </li>
-                    <li class="nav-item" v-for="aside_item in aside">
+                    <li class="nav-item"  v-for="(aside_item,index) in aside" v-key="aside_item.name">
                         <router-link :to=aside_item.id>
-                            <a class=" nav-link" href="javascript:void(0)">{{aside_item.name}}</a>
+                            <a class="aside_a nav-link" v-bind:class="li_green==index?'active_li':''" @click="backg(index)" href="javascript:void(0)">{{aside_item.name}}</a>
                         </router-link>
 
                     </li>
                 </ul>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link disabled" href="#">HTML 参考手册
+                        <a class="nav-link disabled bar_top" href="#">HTML 参考手册
                             <i class="fa fa-star-half-full"></i>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item aside_a">
                         <router-link to="/install">
-                            <a class="nav-link" href="#">html标签列表</a>
+                            <a class="nav-link  aside_a" href="#">html标签列表</a>
                         </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/install">
-                            <a class="nav-link" href="#">http消息</a>
+                            <a class="nav-link  aside_a" href="#">http消息</a>
                         </router-link>
                     </li>
                     <li class="nav-item">
                         <router-link to="/install">
-                            <a class="nav-link" href="#">http方法</a>
+                            <a class="nav-link  aside_a" href="#">http方法</a>
                         </router-link>
                     </li>
                 </ul>
@@ -136,7 +127,7 @@
                         </div>
                     </div>
                     <!--            评论界面-->
-                    <transition name="vue" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                  
                         <div class="niclass" v-if="!change_text">
                             <p class="ni">在此！言出学问，才是学问。</p>
                         </div>
@@ -148,7 +139,6 @@
                                         <input type="text" ref="id" id="name" class="form-control" v-model="text"
                                             placeholder="输入用户名" autocomplete="off">
                                     </label>
-
                                 </div>
                                 <div class="email col-5 offset-1">
                                     <label for="email">
@@ -166,7 +156,6 @@
                                     v-on:click="submit">
                             </div>
                         </div>
-                    </transition>
                 </div>
                 <!--                //评论区内容-->
                 <div class="p_gp" v-for="(item,index) in Object" :key="item.text">
@@ -466,12 +455,12 @@
         <img src="images/qrcode.png" alt="二维码" v-if="image_is">
     </div>`
         })
-        // Vue.component('loading_div', {
-        //     data() {
-        //         return {lod:"true"}
-        //     },
-        //     template: ``
-        // })
+        Vue.component('li_focus', {
+            data() {
+                return {lod:"true"}
+            },
+            template: ``
+        })
         var obj = new VueRouter({
             routes: [{ path: "/", component: hl, }
                 , { path: "/introducation", component: introducation },
@@ -491,6 +480,7 @@
                 niHao: '评论内容不完整！！！！',
                 p_xian: false,
                 heart_is: false,
+                li_green:0,
                 Object: [{ name: 'zhou', email: '894419445@qq.comt', textarea: '任何的限制都源自于内心', date: new Date().toLocaleString() }],
                 aside: [{ name: 'HTML简介', id: "introducation" }, { name: 'HTML编辑器', id: 'install' }, { name: 'HTML元素', id: 'introducation' },
                 { name: 'HTML属性', id: "install" }, { name: 'HTML表格', id: "introducation" }, { name: 'HTML脚本', id: "install" }, { name: 'HTML速查列表', id: "introducation" }]
@@ -546,14 +536,14 @@
                     }
 
 
+                },
+                backg(index){
+                    this.li_green=index
                 }
             }
             ,
             created() {
-                let loading=document.getElementById("loading")
-                if(loading){
-                    document.body.removeChild(loading);
-                }
+
                 axios
                     .get('http://localhost:4000/administrator')
                     .then(response => {
@@ -576,7 +566,6 @@
                 //     this.$refs.td.insertBefore(b,this.$refs.td.firstChild)
                 // }
                 
-
 
             },
             router: obj
