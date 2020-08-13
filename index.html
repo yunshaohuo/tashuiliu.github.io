@@ -104,7 +104,7 @@
             </div>
             <!--        h1 要获取-->
 
-            <div class="content col-sm-8">
+            <div class="content col-sm-7">
                 <i_index></i_index>
                 <transition name="vue" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
 
@@ -121,7 +121,10 @@
                 </div>
 
             </div>
-            <div class="area_text container col-sm-8">
+        </div>
+        <div class="lunqu row">
+            <div class="top col-sm-2"></div>
+            <div class="area_text container col-sm-7 offset-2">
                 <div class="comment">
                     <!--进入评论-->
                     <div class="wenBen">
@@ -131,7 +134,7 @@
                         </div>
                     </div>
                     <!--            评论界面-->
-
+    
                     <div class="niclass" v-if="!change_text">
                         <p class="ni">在此！言出学问，才是学问。</p>
                     </div>
@@ -150,7 +153,7 @@
                                     <input type="email" id="email" class="form-control" v-model="email"
                                         placeholder="输入邮箱地址">
                                 </label>
-
+    
                             </div>
                         </form>
                         <div class="textarea">
@@ -171,15 +174,16 @@
                             </span>
                         </i>
                         <hr>
-
+    
                         <i_heart @object="obj"></i_heart>
                     </div>
                     <hr>
                 </div>
-
-
+    
+    
             </div>
         </div>
+
 
         <div class="w-1000 copyright text-center">
             Copyright © 2013-2019
@@ -258,7 +262,7 @@
         }
         var hl = {
             template:
-                `<div class="da">
+                `<div class="content">
     <div class="text">
             <h1>html <span>教程</span></h1>
             <p>超文本标记语言（英语：HyperText Markup Language，简称：HTML）是一种用于创建网页的标准标记语言。</p>
