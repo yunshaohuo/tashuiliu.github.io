@@ -23,9 +23,9 @@
             <qrcode_i></qrcode_i>
         </div>
         <div class="container-fluid">
-            <nav class="navbar navbar-expand-sm bg navbar-dark row">
-                <div class="title col-sm-6">
-                    <a class="navbar-brand " href="#" title="前端程序哈">
+            
+                <div class="title col-12 row">
+                    <a class=" col-7" href="#" title="前端程序哈">
                         <img src="./images/hashiqi-min.png" class="" alt="nav_hashiqi" width="70px" height="70px">
                         <span style="font-size: 12px;color: lightcoral">前</span>
                         <span style="font-size: 16px;color: orange">端</span>
@@ -33,12 +33,11 @@
                         <span style="font-size: 24px;color: #42b983;">序</span>
                         <span style="font-size: 28px;color: rebeccapurple">哈</span>
                     </a>
+                    <form class="form-inline col-5 row" target="_blank">
+                        <input class="form-control col-6 offset-2" type="text" placeholder="Search" v-model="input_text">
+                        <input type="button" class="btn btn-success col-3 offset-1" value="搜索" @click="search">
+                    </form>
                 </div>
-                <form class="form-inline col-sm-6 row" target="_blank">
-                    <input class="form-control col-6 offset-2" type="text" placeholder="Search" v-model="input_text">
-                    <input type="button" class="btn btn-success col-2 offset-1" value="Search" @click="search">
-                </form>
-            </nav>
             <nav class="navbar_li navbar-expand-sm navbar-dark text-light">
                 <!-- Links -->
                 <ul class="navbar-nav">
@@ -62,7 +61,7 @@
                 </ul>
             </nav>
         </div>
-        <div class="main_content row">
+        <div class="main_content  row">
             <div class="col-sm-2 box_border">
                 <ul class="nav flex-column">
                     <li class="nav-item">
