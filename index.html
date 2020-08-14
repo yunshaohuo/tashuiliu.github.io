@@ -208,9 +208,11 @@
 </span><span class="hl-brackets">&lt;</span><span class="hl-reserved">meta</span><span class="hl-code"> </span><span class="hl-var">charset</span><span class="hl-code">=</span><span class="hl-quotes">"</span><span class="hl-string">utf-8</span><span class="hl-quotes">"</span><span class="hl-brackets">&gt;</span><span class="hl-code">
 </span><span class="hl-brackets">&lt;</span><span class="hl-reserved">title</span><span class="hl-brackets">&gt;</span><span class="hl-code">程序哈(web前端学习)</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">title</span><span class="hl-brackets">&gt;</span><span class="hl-code">
 </span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">head</span><span class="hl-brackets">&gt;</span><span class="hl-code">
-</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">body</span><span class="hl-brackets">&gt;</span><span class="hl-code"></span><span class="hl-brackets">&lt;</span><span class="hl-reserved">h1</span><span class="hl-brackets">&gt;</span><span class="hl-code">我的第一个标题</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">h1</span><span class="hl-brackets">&gt;</span><span class="hl-code"></span><span class="hl-brackets">&lt;</span><span class="hl-reserved">p</span><span class="hl-brackets">&gt;</span><span class="hl-code">我的第一个段落。</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">p</span><span class="hl-brackets">&gt;</span><span class="hl-code">
-</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">body</span><span class="hl-brackets">&gt;</span><span class="hl-code">
-</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">html</span><span class="hl-brackets">&gt;</span> </pre>
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">body</span><span class="hl-brackets">&gt;</span><span class="hl-code"></span>
+<span class="hl-brackets">&lt;</span><span class="hl-reserved">h1</span><span class="hl-brackets">&gt;</span><span class="hl-code">我的第一个标题</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">h1</span><span class="hl-brackets">&gt;</span><span class="hl-code"></span>
+<span class="hl-brackets">&lt;</span><span class="hl-reserved">p</span><span class="hl-brackets">&gt;</span><span class="hl-code">我的第一个段落。</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">p</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">body</span><span class="hl-brackets">&gt;</span>
+<span class="hl-code"></span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">html</span><span class="hl-brackets">&gt;</span> </pre>
             </div>
 
             <a href="https://www.runoob.com/try/try.php?filename=tryhtml_intro" target="_blank" class="btn btn-success" role="button">执行html代码执行</a>
@@ -322,52 +324,56 @@
         <hr>
 </div>`
         }
+        
         var install = {
-            template: `<div class="content">
-    <article>
-        <h1>HTML <span>编辑器</span></h1>
-        <hr>
-        <h2>HTML 编辑器推荐</h2>
-        <p>可以使用专业的 HTML 编辑器来编辑 HTML，菜鸟教程为大家推荐几款常用的编辑器：</p>
-        <ul>
+            template: `
+        <div class="content">  
+            <div class="text">
+            <h1>HTML <span>编辑器</span></h1>
+            <hr>
+            <h2>HTML 编辑器推荐</h2>
+            <p>可以使用专业的 HTML 编辑器来编辑 HTML，菜鸟教程为大家推荐几款常用的编辑器：</p>
+            <ul>
             <li>WebStorm:<a href="https://www.jetbrains.com/">https://www.jetbrains.com/</a></li>
             <li>HBuilderX: <a href="https://www.dcloud.io/index.html">https://www.dcloud.io/index.html</a></li>
-        </ul>
-        <p>你可以从以上软件的官网中下载对应的软件，按步骤安装即可。</p>
-        <p>接下来我们将为大家演示如何使用 WebStorm 工具来创建 HTML 文件，其他两个工具操作步骤类似。</p>
-    </article>
-    <hr>
-    <div class="side">
-        <h2>WebStorm</h2>
-        <p>WebStorm 是jetbrains公司旗下一款JavaScript 开发工具。目前已经被广大中国JS开发者誉为"Web前端开发神器"、"最强大的HTML5编辑器"、"最智能的JavaScript IDE"等</p>
-        <p>与IntelliJ IDEA同源，继承了IntelliJ IDEA强大的JS部分的功能。</p>
-        <div class="imgHtml">
-        <h3>步骤 1: 新建 HTML 文件:</h3>
-            <p>创建不同版本的html文档:</p>
-            <img src="./images/create_html.png" alt="html文件" width="200px" height="200px">
-            <p>h5文档格式:</p>
-            <img src="./images/html.png" alt="html文件" width="200px" height="200px">
-        </div>
-        <hr>
-        <div class="save">
-            <h3>步骤 2: 另存为 HTML 文件</h3>
-            <p>然后选择" 文件(File)->另存为(Save As) "，文件名为 test.html:</p>
-            <img src="./images/save.png" alt="save">
-            <p>当您保存 HTML 文件时，既可以使用 .htm 也可以使用 .html 扩展名。两者没有区别，完全根据您的喜好，我建议统一用 .html。
-                在一个容易记忆的文件夹中保存这个文件，比如 test</p>
-        </div>
-        <hr>
-        <div class="run">
-            <h3>步骤 3: 在浏览器中运行这个 HTML 文件</h3>
-            <p>如图下，选择在默认浏览器打开（也可以其他的浏览器）:</p>
-            <img src="./images/run.png" alt="run" width="200px" height="300px">
-            <p>运行结果如下：</p>
-            <img src="./images/result.png" alt="result" width="200px" height="200px">
+            </ul>
+            <p>你可以从以上软件的官网中下载对应的软件，按步骤安装即可。</p>
+            <p>接下来我们将为大家演示如何使用 WebStorm 工具来创建 HTML 文件，其他两个工具操作步骤类似。</p>
+   
+            <hr>
+            </div>
+        
+            <div class="side">
+                <h2>WebStorm</h2>
+                <p>WebStorm 是jetbrains公司旗下一款JavaScript 开发工具。目前已经被广大中国JS开发者誉为"Web前端开发神器"、"最强大的HTML5编辑器"、"最智能的JavaScript IDE"等</p>
+                <p>与IntelliJ IDEA同源，继承了IntelliJ IDEA强大的JS部分的功能。</p>
+                <div class="imgHtml">
+                <h3>步骤 1: 新建 HTML 文件:</h3>
+                    <p>创建不同版本的html文档:</p>
+                    <img src="./images/create_html.png" alt="html文件" width='200px'>
+                    <p>h5文档格式:</p>
+                    <img src="./images/html.png" alt="html文件" width='200px'>
+            </div>
+                <hr>
+            <div class="save">
+                <h3>步骤 2: 另存为 HTML 文件</h3>
+                <p>然后选择" 文件(File)->另存为(Save As) "，文件名为 test.html:</p>
+                <img src="./images/save.png" alt="save">
+                <p>当您保存 HTML 文件时，既可以使用 .htm 也可以使用 .html 扩展名。两者没有区别，完全根据您的喜好，我建议统一用 .html。
+                    在一个容易记忆的文件夹中保存这个文件，比如 test</p>
+            </div>
+            <hr>
+            <div class="run">
+                <h3>步骤 3: 在浏览器中运行这个 HTML 文件</h3>
+                <p>如图下，选择在默认浏览器打开（也可以其他的浏览器）:</p>
+                <img src="./images/run.png" alt="run" width="200px" height="300px">
+                <p>运行结果如下：</p>
+                <img src="./images/result.png" alt="result" width="200px" height="200px">
+            </div>
+            </div>
+            <hr>
         </div>
 
-    </div>
-<hr>
-</div>
 `
         }
         Vue.component('i_index', {
