@@ -13,6 +13,7 @@
     <script src="javascripts/axios.min.js"></script>
     <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="stylesheets/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
 </head>
 
 <body>
@@ -23,21 +24,21 @@
             <qrcode_i></qrcode_i>
         </div>
         <div class="container-fluid">
-            
-                <div class="title col-12 row">
-                    <a class=" col-7" href="#" title="前端程序哈">
-                        <img src="./images/hashiqi-min.png" class="" alt="nav_hashiqi" width="70px" height="70px">
-                        <span style="font-size: 12px;color: lightcoral">前</span>
-                        <span style="font-size: 16px;color: orange">端</span>
-                        <span style="font-size: 20px;color: yellowgreen">程</span>
-                        <span style="font-size: 24px;color: #42b983;">序</span>
-                        <span style="font-size: 28px;color: rebeccapurple">哈</span>
-                    </a>
-                    <form class="form-inline col-5 row" target="_blank">
-                        <input class="form-control col-6 offset-2" type="text" placeholder="Search" v-model="input_text">
-                        <input type="button" class="btn btn-success col-3 offset-1" value="搜索" @click="search">
-                    </form>
-                </div>
+
+            <div class="title col-12 row">
+                <a class=" col-7" href="#" title="前端程序哈">
+                    <img src="./images/hashiqi-min.png" class="" alt="nav_hashiqi" width="70px" height="70px">
+                    <span style="font-size: 12px;color: lightcoral">前</span>
+                    <span style="font-size: 16px;color: orange">端</span>
+                    <span style="font-size: 20px;color: yellowgreen">程</span>
+                    <span style="font-size: 24px;color: #42b983;">序</span>
+                    <span style="font-size: 28px;color: rebeccapurple">哈</span>
+                </a>
+                <form class="form-inline col-5 row" target="_blank">
+                    <input class="form-control col-6 offset-2" type="text" placeholder="Search" v-model="input_text">
+                    <input type="button" class="btn btn-success col-3 offset-1" value="搜索" @click="search">
+                </form>
+            </div>
             <nav class="navbar_li navbar-expand-sm navbar-dark text-light">
                 <!-- Links -->
                 <ul class="navbar-nav">
@@ -65,26 +66,39 @@
             <div class="col-sm-2 box_border">
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class=" nav-link disabled bar_top" href="#">
-                            HTML教程
-                            <i class="fa fa-star-half-full"></i>
+
+                        <a class=" nav-link bar_top" href="javascript:void(0)" title="html"
+                            @click.stop.prevent="disappear">
+                            <span class="put_xia">HTML教程</span>
+                        <i class="fa fa-angle-up" v-if="this.li_disappear"></i>
+                        <i class="fa fa-angle-down" v-else></i>                 
                         </a>
                     </li>
-                    <li class="nav-item" v-for="(aside_item,index) in aside" v-key="aside_item.name">
-                        <router-link :to=aside_item.id>
-                            <a class="aside_a nav-link" v-bind:class="li_green==index?'active_li':''"
-                                @click="backg(index)" href="javascript:void(0)">{{aside_item.name}}</a>
-                        </router-link>
+                    <transition name='ul' appear :duration="{ enter: 800, leave: 700 }" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                        <ul class="nav flex-column" v-show="this.li_disappear">
+                            <li class="nav-item" v-for="(aside_item,index) in aside" v-key="aside_item.name">
+                                <router-link :to=aside_item.id>
+                                    <a class="aside_a nav-link" v-bind:class="li_green==index?'active_li':''"
+                                        @click="backg(index)" href="javascript:void(0)">{{aside_item.name}}</a>
+                                </router-link>
+    
+                            </li>
+                        </ul>
+                    </transition>
+                    
 
-                    </li>
+
                 </ul>
                 <ul class="nav flex-column">
                     <li class="nav-item">
-                        <a class="nav-link disabled bar_top" href="#">HTML 参考手册
+                        <a class="nav-link bar_top  disabled" href="#">HTML 参考手册
                             <i class="fa fa-star-half-full"></i>
                         </a>
+
                     </li>
-                    <li class="nav-item aside_a">
+                </ul>
+                <ul class="nav flex-column bt_disappear">
+                    <li class="nav-item">
                         <router-link to="/install">
                             <a class="nav-link  aside_a" href="#">html标签列表</a>
                         </router-link>
@@ -116,7 +130,9 @@
             <!--侧边栏-->
             <div class="aside_right col-sm-2">
                 <div class="box_right">
-                    <p class="p_row">快来打广告</p>
+                    <p class="p_row">快来打广告
+                        <i class="fa fa-close"></i>
+                    </p>
                 </div>
 
             </div>
@@ -133,7 +149,6 @@
                         </div>
                     </div>
                     <!--            评论界面-->
-    
                     <div class="niclass" v-if="!change_text">
                         <p class="ni">在此！言出学问，才是学问。</p>
                     </div>
@@ -152,7 +167,7 @@
                                     <input type="email" id="email" class="form-control" v-model="email"
                                         placeholder="输入邮箱地址">
                                 </label>
-    
+
                             </div>
                         </form>
                         <div class="textarea">
@@ -173,13 +188,13 @@
                             </span>
                         </i>
                         <hr>
-    
+
                         <i_heart @object="obj"></i_heart>
                     </div>
                     <hr>
                 </div>
-    
-    
+
+
             </div>
         </div>
 
@@ -324,7 +339,7 @@
         <hr>
 </div>`
         }
-        
+
         var install = {
             template: `
         <div class="content">  
@@ -507,6 +522,7 @@
                 p_xian: false,
                 heart_is: false,
                 li_green: 0,
+                li_disappear: true,
                 Object: [{ name: 'zhou', email: '894419445@qq.comt', textarea: '任何的限制都源自于内心', date: new Date().toLocaleString() }],
                 aside: [{ name: 'HTML教程', id: "hl" }, { name: 'HTML简介', id: "introducation" }, { name: 'HTML编辑器', id: 'install' }, { name: 'HTML元素', id: 'introducation' },
                 { name: 'HTML属性', id: "install" }, { name: 'HTML表格', id: "introducation" }, { name: 'HTML脚本', id: "install" }, { name: 'HTML速查列表', id: "introducation" }]
@@ -565,6 +581,10 @@
                 },
                 backg(index) {
                     this.li_green = index
+                },
+                disappear() {
+                    this.li_disappear = !this.li_disappear
+                    
                 }
             }
             ,
