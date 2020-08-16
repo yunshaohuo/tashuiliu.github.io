@@ -64,56 +64,59 @@
         </div>
         <div class="main_content  row">
             <div class="col-sm-2 box_border">
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-
-                        <a class=" nav-link bar_top" href="javascript:void(0)" title="html"
-                            @click.stop.prevent="disappear">
-                            <span class="put_xia">HTML教程</span>
-                        <i class="fa fa-angle-up" v-if="this.li_disappear"></i>
-                        <i class="fa fa-angle-down" v-else></i>                 
-                        </a>
-                    </li>
-                    <transition name='ul' appear :duration="{ enter: 800, leave: 700 }" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
-                        <ul class="nav flex-column" v-show="this.li_disappear">
-                            <li class="nav-item" v-for="(aside_item,index) in aside" v-key="aside_item.name">
-                                <router-link :to=aside_item.id>
-                                    <a class="aside_a nav-link" v-bind:class="li_green==index?'active_li':''"
-                                        @click="backg(index)" href="javascript:void(0)">{{aside_item.name}}</a>
-                                </router-link>
+                <div class="ul_bars">
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
     
-                            </li>
-                        </ul>
-                    </transition>
-                    
+                            <a class=" nav-link bar_top" href="javascript:void(0)" title="html"
+                                @click.stop.prevent="disappear">
+                                <span class="put_xia">HTML教程</span>
+                            <i class="fa fa-angle-up" v-if="this.li_disappear"></i>
+                            <i class="fa fa-angle-down" v-else></i>                 
+                            </a>
+                        </li>
+                        <transition name='ul' appear :duration="{ enter: 800, leave: 700 }" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                            <ul class="nav flex-column" v-show="this.li_disappear">
+                                <li class="nav-item" v-for="(aside_item,index) in aside" v-key="aside_item.name">
+                                    <router-link :to=aside_item.id>
+                                        <a class="aside_a nav-link" v-bind:class="li_green==index?'active_li':''"
+                                            @click="backg(index)" href="javascript:void(0)">{{aside_item.name}}</a>
+                                    </router-link>
+        
+                                </li>
+                            </ul>
+                        </transition>
+                        
+    
+    
+                    </ul>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link bar_top  disabled" href="#">HTML 参考手册
+                                <i class="fa fa-star-half-full"></i>
+                            </a>
+    
+                        </li>
+                    </ul>
+                    <ul class="nav flex-column bt_disappear">
+                        <li class="nav-item">
+                            <router-link to="/install">
+                                <a class="nav-link  aside_a" href="#">html标签列表</a>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/install">
+                                <a class="nav-link  aside_a" href="#">http消息</a>
+                            </router-link>
+                        </li>
+                        <li class="nav-item">
+                            <router-link to="/install">
+                                <a class="nav-link  aside_a" href="#">http方法</a>
+                            </router-link>
+                        </li>
+                    </ul>
+                </div>
 
-
-                </ul>
-                <ul class="nav flex-column">
-                    <li class="nav-item">
-                        <a class="nav-link bar_top  disabled" href="#">HTML 参考手册
-                            <i class="fa fa-star-half-full"></i>
-                        </a>
-
-                    </li>
-                </ul>
-                <ul class="nav flex-column bt_disappear">
-                    <li class="nav-item">
-                        <router-link to="/install">
-                            <a class="nav-link  aside_a" href="#">html标签列表</a>
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/install">
-                            <a class="nav-link  aside_a" href="#">http消息</a>
-                        </router-link>
-                    </li>
-                    <li class="nav-item">
-                        <router-link to="/install">
-                            <a class="nav-link  aside_a" href="#">http方法</a>
-                        </router-link>
-                    </li>
-                </ul>
             </div>
             <!--        h1 要获取-->
 
