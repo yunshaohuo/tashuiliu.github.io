@@ -35,8 +35,8 @@
                     <span style="font-size: 28px;color: rebeccapurple">哈</span>
                 </a>
                 <form class="form-inline col-5 row" target="_blank">
-                    <input class="form-control col-6 offset-2" type="text" placeholder="Search" v-model="input_text">
-                    <input type="button" class="btn btn-success col-3 offset-1" value="搜索" @click="search">
+                    <input class="form-control col-8 offset-2" type="text" placeholder="Search" v-model="input_text"
+                        onkeydown.native="">
                 </form>
             </div>
             <nav class="navbar_li navbar-expand-sm navbar-dark text-light">
@@ -67,54 +67,57 @@
                 <div class="ul_bars">
                     <ul class="nav flex-column">
                         <li class="nav-item">
-    
+
                             <a class=" nav-link bar_top" href="javascript:void(0)" title="html"
                                 @click.stop.prevent="disappear">
                                 <span class="put_xia">HTML教程</span>
-                            <i class="fa fa-angle-up" v-if="this.li_disappear"></i>
-                            <i class="fa fa-angle-down" v-else></i>                 
+                                <i class="fa fa-angle-up" v-if="this.li_disappear"></i>
+                                <i class="fa fa-angle-down" v-else></i>
                             </a>
                         </li>
-                        <transition name='ul' appear :duration="{ enter: 800, leave: 700 }" enter-active-class="animated fadeIn" leave-active-class="animated fadeOut">
+                        <transition name="commentTop" appear  mode="in-out">
+                        
+                        <!-- <transition-group tag="div"></transition-group> -->
                             <ul class="nav flex-column" v-show="this.li_disappear">
                                 <li class="nav-item" v-for="(aside_item,index) in aside" v-key="aside_item.name">
                                     <router-link :to=aside_item.id>
                                         <a class="aside_a nav-link" v-bind:class="li_green==index?'active_li':''"
                                             @click="backg(index)" href="javascript:void(0)">{{aside_item.name}}</a>
                                     </router-link>
-        
+
                                 </li>
                             </ul>
                         </transition>
-                        
-    
-    
+
+
+
                     </ul>
-                    <ul class="nav flex-column">
+                    <ul class="nav flex-column donghua">
                         <li class="nav-item">
                             <a class="nav-link bar_top  disabled" href="#">HTML 参考手册
                                 <i class="fa fa-star-half-full"></i>
                             </a>
-    
+
                         </li>
+                        <ul class="nav flex-column bt_disappear">
+                            <li class="nav-item">
+                                <router-link to="/install">
+                                    <a class="nav-link  aside_a" href="#">html标签列表</a>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/install">
+                                    <a class="nav-link  aside_a" href="#">http消息</a>
+                                </router-link>
+                            </li>
+                            <li class="nav-item">
+                                <router-link to="/install">
+                                    <a class="nav-link  aside_a" href="#">http方法</a>
+                                </router-link>
+                            </li>
+                        </ul>
                     </ul>
-                    <ul class="nav flex-column bt_disappear">
-                        <li class="nav-item">
-                            <router-link to="/install">
-                                <a class="nav-link  aside_a" href="#">html标签列表</a>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/install">
-                                <a class="nav-link  aside_a" href="#">http消息</a>
-                            </router-link>
-                        </li>
-                        <li class="nav-item">
-                            <router-link to="/install">
-                                <a class="nav-link  aside_a" href="#">http方法</a>
-                            </router-link>
-                        </li>
-                    </ul>
+
                 </div>
 
             </div>
@@ -147,38 +150,52 @@
                     <!--进入评论-->
                     <div class="wenBen">
                         <p><span v-on:click.stop="holder">点击,进入评论</span></p>
-                        <div class="alert alert-success text-center" v-if="p_xian">
-                            <strong>警告!</strong> {{niHao}}
-                        </div>
+                        <transition name="comment">
+                            <div class="alert alert-success text-center" v-if="p_xian">
+                                <strong>警告!</strong> {{niHao}}
+                            </div>
+                        </transition>
+
                     </div>
                     <!--            评论界面-->
-                    <div class="niclass" v-if="!change_text">
-                        <p class="ni">在此！言出学问，才是学问。</p>
-                    </div>
-                    <div v-else class="comment_h">
-                        <form action="" class="form-group row">
-                            <div class="name col-4">
-                                <label for="name">
-                                    用户名：
-                                    <input type="text" ref="id" id="name" class="form-control" v-model="text"
-                                        placeholder="输入用户名" autocomplete="off">
-                                </label>
-                            </div>
-                            <div class="email col-5 offset-1">
-                                <label for="email">
-                                    邮件：
-                                    <input type="email" id="email" class="form-control" v-model="email"
-                                        placeholder="输入邮箱地址">
-                                </label>
 
-                            </div>
-                        </form>
-                        <div class="textarea">
-                            <!--                        v-bind:disable="{disable:able_is}"-->
-                            <textarea name="" id="" class="form-control" rows="10" v-model="textarea"></textarea>
-                            <input type="submit" class="btn btn-success btn_test" value="写笔记或建议" v-on:click="submit">
+
+                    <transition name="topStyle" mode="out-in" v-on:before-enter="beforeEnter" v-on:enter="enter"
+                        v-on:after-enter="afterEnter" v-on:before-leave="beforeLeave" v-on:leave="leave"
+                        v-on:after-leave="afterLeave">
+                        <div class="niclass" v-if="!change_text" key="wenzi">
+                            <p class="ni" ref="class">在此！言出学问，才是学问。</p>
                         </div>
-                    </div>
+
+                        <div v-if="change_text" class="comment_h" key="area">
+                            <form action="" class="form-group row">
+                                <div class="name col-4">
+                                    <label for="name">
+                                        用户名：
+                                        <input type="text" ref="id" id="name" class="form-control" v-model="text"
+                                            placeholder="输入用户名" autocomplete="off">
+                                    </label>
+                                </div>
+                                <div class="email col-5 offset-1">
+                                    <label for="email">
+                                        邮件：
+                                        <input type="email" id="email" class="form-control" v-model="email"
+                                            placeholder="输入邮箱地址">
+                                    </label>
+
+                                </div>
+                            </form>
+                            <div class="textarea">
+                                <!--                        v-bind:disable="{disable:able_is}"-->
+                                <textarea name="" id="" class="form-control" rows="10" v-model="textarea"></textarea>
+                                <input type="submit" class="btn btn-success btn_test" value="写笔记或建议"
+                                    v-on:click="submit">
+                            </div>
+                        </div>
+
+                    </transition>
+
+
                 </div>
                 <!--                //评论区内容-->
                 <div class="p_gp" v-for="(item,index) in Object" :key="item.text">
@@ -212,6 +229,7 @@
     </div>
 
     <script>
+        // 各路由模块内容分发组件
 
         var introducation = {
             template: `<div class="content">
@@ -405,6 +423,7 @@
         <hr>
     `
         })
+        // 点赞删除
         Vue.component("i_heart", {
             props: [],
             data: function () {
@@ -457,17 +476,21 @@
                       </div>`
         }
         ),
+            // 用户名及点击邮箱
             Vue.component('i_tri', {
                 props: ['name', 'email'],
                 data: function () {
                     return {
-                        tri_is: false
+                        tri_is: false,
+
+
                     }
                 },
                 methods: {
                     triHolder() {
                         this.tri_is = !this.tri_is
-                    }
+                    },
+
                 },
                 template: `<p class="fa fa-user-circle-o col-sm-6">
                     <span class="p_hover" v-on:click="triHolder">
@@ -483,17 +506,64 @@
         Vue.component('qrcode_i', {
             data() {
                 return {
-                    image_is: false
+                    image_is: false,
+                    timer: null,
+                    oneheight: 0,
+                    topon: true,
+                    viewHeight: document.documentElement.clientHeight,
                 }
             },
             methods: {
                 qrCode() {
                     this.image_is = !this.image_is
+                },
+                backTop() {
+                    timer = setInterval(function () {
+
+                        var osTop = document.documentElement.scrollTop
+                        var height = Math.floor(-osTop / 8)
+                        document.documentElement.scrollTop = document.body.scrollTop = osTop + height
+                        if (osTop == 0) {
+                            clearInterval(timer)
+                        }
+
+                    }, 20)
+                },
+                scrolltop() {
+                    var osTop = document.documentElement.scrollTop
+
+                    if (osTop > this.viewHeight) {
+
+                        //需要改成适合vue的写法
+                        // Vue 写true 和 false
+
+                        this.$refs.s.style.visibility = "visible"
+                        this.$refs.s.parentNode.style.boxShadow = "1px 1px 10px #dddddd"
+                        this.$refs.s.parentNode.style.background = "whitesmoke"
+                        this.$refs.s.parentNode.style.borderBottom = "#dddddd 1px solid"
+
+                    } else {
+                        this.$refs.s.style.visibility = "hidden"
+                        this.$refs.s.parentNode.style.boxShadow = "none"
+                        this.$refs.s.parentNode.style.background = "none"
+                        this.$refs.s.parentNode.style.borderBottom = "none"
+
+                    }
+                    this.topon = false
                 }
+
+            },
+            mounted() {
+                window.addEventListener('scroll', this.scrolltop)
+
+                console.log(document.documentElement.scrollTop, this.$refs)
+
             },
             template: `
     <div class="dui">
-        <div class="ding"><a href="#"><i class="fa fa-arrow-up"></i></a></div>
+    
+        <div class="ding"><a href="javascript:void(0)"  ref="s" @click.stop="backTop"><i class="fa fa-arrow-up"></i></a></div>
+
         <div class="ma"><a href="javascript:void(0)" @click.stop="qrCode"><i class="fa fa-qrcode" aria-hidden="true"></i></a></div>
         <img src="images/qrcode.png" alt="二维码" v-if="image_is">
     </div>`
@@ -504,6 +574,7 @@
             },
             template: ``
         })
+        //    路由及组件注册
         var obj = new VueRouter({
             routes: [
                 { path: "/hl", component: hl, alias: '/' },
@@ -511,6 +582,7 @@
                 { path: "/install", component: install }
             ]
         })
+        // 跟实例
         var vm = new Vue({
             el: ".all",
             data: {
@@ -587,8 +659,43 @@
                 },
                 disappear() {
                     this.li_disappear = !this.li_disappear
+
+                },
+                beforeEnter(el) {
+                    console.log(this.$refs)
+                },
+                enter() {
+
+                    console.log("entering>>>", this.$refs)
+                    if (this.$refs.class) {
+                        this.$refs.class.innerHTML = "Loading...."
+                        
+                    }
+                },
+                afterEnter() {
+                    console.log("after enter")
+                    if (this.$refs.class) {
+                        this.$refs.class.innerHTML = "在此！言出学问，才是学问。"
+                        
+                    }
                     
+                },
+                beforeLeave() {
+                    console.log("刚刚离开", this.$refs)
+                },
+                leave() {
+                    console.log("leaving", this.$refs)
+                    if (this.$refs.class) {
+                        this.$refs.class.innerHTML = "leaving...."
+                        
+                    }
+
+
+                },
+                afterLeave() {
+                    console.log("leaved", this.$refs)
                 }
+
             }
             ,
             created() {
