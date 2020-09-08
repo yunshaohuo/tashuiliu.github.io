@@ -17,6 +17,22 @@
 </head>
 
 <body>
+    <!-- <div class="table-responsive table-div">
+        <table  class="table table-bordered table-hover table-sm">
+            <thead class="table_head">
+                <tr>
+                    <th colspan="2">主题</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="">
+                    <th>api</th>
+                    <td>这是一个很好的释放</td>
+                </tr>
+            </tbody>
+        </table>
+    </div> -->
+
 
     <div class="all">
 
@@ -34,9 +50,17 @@
                     <span style="font-size: 24px;color: #42b983;">序</span>
                     <span style="font-size: 28px;color: rebeccapurple">哈</span>
                 </a>
-                <form class="form-inline col-5 row" target="_blank">
-                    <input class="form-control col-8 offset-2" type="text" placeholder="Search" v-model="input_text"
-                        onkeydown.native="">
+                <form class="form-inline col-5 row form_focus">
+                    <input class="form-control col-8 offset-2" type="search" placeholder="Search" v-model="input_text">
+                    
+                    <li_focus  
+                        :arr="this.arrnew"
+                        
+                        :lode="this.lod"
+                      >
+                      {{search}}
+                    </li_focus>
+
                 </form>
             </div>
             <nav class="navbar_li navbar-expand-sm navbar-dark text-light">
@@ -75,9 +99,9 @@
                                 <i class="fa fa-angle-down" v-else></i>
                             </a>
                         </li>
-                        <transition name="commentTop" appear  mode="in-out">
-                        
-                        <!-- <transition-group tag="div"></transition-group> -->
+                        <transition name="commentTop" appear mode="in-out">
+
+                            <!-- <transition-group tag="div"></transition-group> -->
                             <ul class="nav flex-column" v-show="this.li_disappear">
                                 <li class="nav-item" v-for="(aside_item,index) in aside" v-key="aside_item.name">
                                     <router-link :to=aside_item.id>
@@ -495,8 +519,9 @@
                 template: `<p class="fa fa-user-circle-o col-sm-6">
                     <span class="p_hover" v-on:click="triHolder">
                         <i class="spanList" v-if="tri_is">
+                            <i class="fa fa-envelope tiShi">:{{email}}</i>
                             <span class="tri"></span>
-                            <i class="fa fa-envelope tiShi">{{email}}</i>
+                            
                         </i>{{" "+name+" "}}
                     </span>
                     评论：
@@ -531,22 +556,33 @@
                 },
                 scrolltop() {
                     var osTop = document.documentElement.scrollTop
-
-                    if (osTop > this.viewHeight) {
+                    console.log(this.viewHeight)
+                    if (osTop > this.viewHeight / 2) {
 
                         //需要改成适合vue的写法
                         // Vue 写true 和 false
+                        // this.$refs.s.parentNode.style
 
                         this.$refs.s.style.visibility = "visible"
                         this.$refs.s.parentNode.style.boxShadow = "1px 1px 10px #dddddd"
                         this.$refs.s.parentNode.style.background = "whitesmoke"
                         this.$refs.s.parentNode.style.borderBottom = "#dddddd 1px solid"
+                        this.$refs.s.parentNode.style.opacity = "1"
+                        this.$refs.s.parentNode.style.transition = " visibility 2s linear,opacity 1s"
+
+
 
                     } else {
-                        this.$refs.s.style.visibility = "hidden"
-                        this.$refs.s.parentNode.style.boxShadow = "none"
-                        this.$refs.s.parentNode.style.background = "none"
-                        this.$refs.s.parentNode.style.borderBottom = "none"
+
+
+                        this.$refs.s.parentNode.style.boxShadow = ""
+                        this.$refs.s.parentNode.style.background = ""
+                        this.$refs.s.parentNode.style.borderBottom = ""
+                        this.$refs.s.parentNode.style.opacity = "0"
+                        this.$refs.s.parentNode.style.transition = "visibility 2s linear,opacity 1s"
+
+
+
 
                     }
                     this.topon = false
@@ -568,11 +604,44 @@
         <img src="images/qrcode.png" alt="二维码" v-if="image_is">
     </div>`
         })
+       //搜索框下的提示框
         Vue.component('li_focus', {
+            props: ['arr','lode'],
             data() {
-                return { lod: "true" }
+                return {
+                  
+                  aa:this.arr,
+                  bb:this.inputContent
+                }
             },
-            template: ``
+            methods:{
+                tableholder(a){
+                   console.log(this.bb)
+                    this.$router.push(a)
+                },
+
+            }
+            ,
+            template: `    <div class="table-div"  v-show="this.lode"> 
+        <table  class="table table-bordered table-hover table-sm">
+            <thead class="table_head">
+                <tr>
+                    <th colspan="2">
+                        <slot>请输入相关内容</slot>
+                        </th>
+                    
+                </tr>
+            </thead>
+            <tbody  v-for="items in arr" :key="items.id">
+                <tr @click="tableholder(items.id)">
+                    <td>{{items.content_xi}}</td>
+                </tr>
+
+            </tbody>
+            </table>
+            <span class="search_bottom">search by 程序哈</span>
+
+    </div>`
         })
         //    路由及组件注册
         var obj = new VueRouter({
@@ -588,6 +657,7 @@
             data: {
                 change_text: false,
                 text: '',
+                lod:false,
                 email: '',
                 input_text: '',
                 textarea: '',
@@ -597,10 +667,35 @@
                 p_xian: false,
                 heart_is: false,
                 li_green: 0,
+                lod: true,
                 li_disappear: true,
-                Object: [{ name: 'zhou', email: '894419445@qq.comt', textarea: '任何的限制都源自于内心', date: new Date().toLocaleString() }],
+                Object: [{ name: 'zhou', email: '894419445@qq.com', textarea: '任何的限制都源自于内心', date: new Date().toLocaleString() }],
                 aside: [{ name: 'HTML教程', id: "hl" }, { name: 'HTML简介', id: "introducation" }, { name: 'HTML编辑器', id: 'install' }, { name: 'HTML元素', id: 'introducation' },
-                { name: 'HTML属性', id: "install" }, { name: 'HTML表格', id: "introducation" }, { name: 'HTML脚本', id: "install" }, { name: 'HTML速查列表', id: "introducation" }]
+                { name: 'HTML属性', id: "install" }, { name: 'HTML表格', id: "introducation" }, { name: 'HTML脚本', id: "install" }, { name: 'HTML速查列表', id: "introducation" }],
+                arrnew:[{id: "hl",content_xi:"这个文本时解析用的111"},{id: "introducation",content_xi:"这个文本时解析用的22"}]
+            },
+            
+            computed: {
+                search: function () {
+                    // input_text
+                    // a-z不能重复出现
+                    //中文的搜索
+                    var reg=new RegExp("\s");
+                    console.log(this.input_text.length==0)
+                    // this.input_text 
+                    if(this.input_text && reg.test(this.input_text)){
+                        this.lod = true;
+                        
+                    return "\""+this.input_text.trim()+"\""+"/"+"搜索结果";
+                    }else{
+
+                        this.lod=false
+                        return "请输出相关内容";
+
+                    }
+
+
+                },
             },
             methods: {
                 obj(ob) {
@@ -644,16 +739,7 @@
                 myFocus() {
                     this.$refs.id.focus()
                 },
-                search() {
-                    if (!this.input_text) {
-                        alert("输入数据")
-                        return
-                    } else if (this.aside.indexOf(this.input_text) !== -1) {
 
-                    }
-
-
-                },
                 backg(index) {
                     this.li_green = index
                 },
@@ -669,16 +755,16 @@
                     console.log("entering>>>", this.$refs)
                     if (this.$refs.class) {
                         this.$refs.class.innerHTML = "Loading...."
-                        
+
                     }
                 },
                 afterEnter() {
                     console.log("after enter")
                     if (this.$refs.class) {
                         this.$refs.class.innerHTML = "在此！言出学问，才是学问。"
-                        
+
                     }
-                    
+
                 },
                 beforeLeave() {
                     console.log("刚刚离开", this.$refs)
@@ -687,7 +773,7 @@
                     console.log("leaving", this.$refs)
                     if (this.$refs.class) {
                         this.$refs.class.innerHTML = "leaving...."
-                        
+
                     }
 
 
@@ -703,7 +789,7 @@
                 axios
                     .get('http://localhost:4000/administrator')
                     .then(response => {
-                        if (response.data.length == 0) { return }
+                        if (response.data.length == 0) { return nihao;}
                         for (var i = 0; i < response.data.length; i++) {
                             var s = { name: response.data[i].name, email: response.data[i].email, textarea: response.data[i].text, date: response.data[i].date }
                             this.Object.unshift(s)
